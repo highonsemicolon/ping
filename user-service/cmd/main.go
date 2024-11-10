@@ -3,9 +3,8 @@ package main
 import (
 	"fmt"
 	"log"
-	"net/http"
 
-	"github.com/gorilla/mux"
+	"github.com/gin-gonic/gin"
 	"github.com/highonsemicolon/ping/user-service/pkg/db"
 	"github.com/highonsemicolon/ping/user-service/pkg/utils"
 )
@@ -22,9 +21,9 @@ func main() {
 	}
 	defer dbConn.Close()
 
-	router := mux.NewRouter()
+	router := gin.Default()
 
 	address := fmt.Sprintf("%s:%s", config.Server.Host, config.Server.Port)
 	log.Printf("Starting user service on %s ...", address)
-	log.Fatal(http.ListenAndServe(address, router))
+	log.Fatal(router.Run(address))
 }
