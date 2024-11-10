@@ -10,9 +10,12 @@ type Config struct {
 	Server struct {
 		Port string `yaml:"port"`
 	} `yaml:"server"`
-	MySQL struct {
-		DSN string `yaml:"dsn"`
-	} `yaml:"mysql"`
+	MySQL MySQLConfig `yaml:"mysql"`
+}
+
+type MySQLConfig struct {
+	DSN        string `yaml:"dsn"`
+	CACertPath string `yaml:"ca_cert_path"`
 }
 
 func LoadConfig(filepath string) (*Config, error) {

@@ -13,7 +13,7 @@ func main() {
 		log.Fatalf("Error loading config: %v", err)
 	}
 
-	dbConn, err := db.InitMySQL(config.MySQL.DSN)
+	dbConn, err := db.InitMySQL(config.MySQL)
 	if err != nil {
 		log.Fatalf("Error connecting to MySQL %v", err)
 	}
