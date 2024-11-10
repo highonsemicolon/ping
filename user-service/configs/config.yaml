@@ -1,0 +1,5 @@
+server:
+  port: "8081"
+
+mysql:
+  dsn: "username:passwword@tcp(host:port)/defaultdb?tls=true"
