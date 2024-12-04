@@ -11,7 +11,15 @@ type Config struct {
 		Host string `yaml:"host"`
 		Port string `yaml:"port"`
 	} `yaml:"server"`
+
 	MySQL MySQLConfig `yaml:"mysql"`
+
+	Auth0 Auth0 `yaml:"auth0"`
+}
+
+type Auth0 struct {
+	Domain   string `yaml:"domain"`
+	Audience string `yaml:"audience"`
 }
 
 type MySQLConfig struct {
