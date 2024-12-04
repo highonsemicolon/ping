@@ -2,3 +2,7 @@ certs
 *.pem
 *.cert
 *.crt
+
+tmp
+.vite
+__debug*
