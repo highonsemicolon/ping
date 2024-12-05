@@ -4,10 +4,11 @@ import (
 	"database/sql"
 	"net/http"
 
+	"user-service/pkg/middleware"
+	"user-service/pkg/utils"
+
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/highonsemicolon/ping/user-service/pkg/middleware"
-	"github.com/highonsemicolon/ping/user-service/pkg/utils"
 )
 
 func SetupRoutes(router *gin.Engine, db *sql.DB, config utils.Auth0) {

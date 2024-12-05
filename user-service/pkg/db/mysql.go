@@ -7,9 +7,10 @@ import (
 	"log"
 	"os"
 
+	"user-service/pkg/utils"
+
 	"github.com/go-sql-driver/mysql"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/highonsemicolon/ping/user-service/pkg/utils"
 )
 
 func setupTLSConfig(CACertPath string) {

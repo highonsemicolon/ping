@@ -4,10 +4,11 @@ import (
 	"fmt"
 	"net/http"
 
+	"user-service/pkg/utils"
+
 	jwtmiddleware "github.com/auth0/go-jwt-middleware"
 	"github.com/form3tech-oss/jwt-go"
 	"github.com/gin-gonic/gin"
-	"github.com/highonsemicolon/ping/user-service/pkg/utils"
 )
 
 func JwtMiddleware(config *utils.Auth0) gin.HandlerFunc {

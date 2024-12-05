@@ -4,11 +4,12 @@ import (
 	"fmt"
 	"log"
 
+	"user-service/pkg/api"
+	"user-service/pkg/db"
+	"user-service/pkg/utils"
+
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/highonsemicolon/ping/user-service/pkg/api"
-	"github.com/highonsemicolon/ping/user-service/pkg/db"
-	"github.com/highonsemicolon/ping/user-service/pkg/utils"
 )
 
 func main() {
