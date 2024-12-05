@@ -1,5 +1,11 @@
 server:
+  host: "localhost"
   port: "8081"
 
 mysql:
-  dsn: "username:passwword@tcp(host:port)/defaultdb?tls=true"
+  dsn: "username:passwword@tcp(host:port)/defaultdb?tls=custom"
+  ca_cert_path: "./configs/ca.pem"
+
+auth0:
+  domain: dev-abcd1234.us.auth0.com
+  audience: my-app
