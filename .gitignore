@@ -4,5 +4,3 @@ certs
 *.crt
 
 tmp
-.vite
-__debug*
