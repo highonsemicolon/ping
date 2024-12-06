@@ -18,7 +18,7 @@ func main() {
 		log.Fatalf("Error loading config: %v", err)
 	}
 
-	dbConn, err := db.InitMySQL(config.MySQL)
+	dbConn, err := db.InitMySQL(config.MySQL.DSN, config.MySQL.CACertPath)
 	if err != nil {
 		log.Fatalf("Error connecting to MySQL %v", err)
 	}
@@ -34,7 +34,7 @@ func main() {
 
 	router := gin.Default()
 	router.Use(cors.New(corsConfig))
-	api.SetupRoutes(router, dbConn, config.Auth0)
+	api.SetupRoutes(router, dbConn, config.Auth0.Domain, config.Auth0.Audience)
 
 	address := fmt.Sprintf("%s:%s", config.Server.Host, config.Server.Port)
 	log.Printf("Starting user service on %s ...", address)

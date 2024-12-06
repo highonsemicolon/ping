@@ -11,12 +11,12 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func JwtMiddleware(config *utils.Auth0) gin.HandlerFunc {
+func JwtMiddleware(domain, audience string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		jwtMiddleware := jwtmiddleware.New(jwtmiddleware.Options{
 			ValidationKeyGetter: func(token *jwt.Token) (interface{}, error) {
 
-				checkIss := token.Claims.(jwt.MapClaims).VerifyIssuer("https://"+config.Domain+"/", false)
+				checkIss := token.Claims.(jwt.MapClaims).VerifyIssuer("https://"+domain+"/", false)
 				if !checkIss {
 					return token, fmt.Errorf("Invalid issuer")
 				}
@@ -24,7 +24,7 @@ func JwtMiddleware(config *utils.Auth0) gin.HandlerFunc {
 				audiences := token.Claims.(jwt.MapClaims)["aud"].([]interface{})
 				checkAud := false
 				for _, audience := range audiences {
-					if audience == config.Audience {
+					if audience == audience {
 						checkAud = true
 						break
 					}
@@ -35,7 +35,7 @@ func JwtMiddleware(config *utils.Auth0) gin.HandlerFunc {
 				}
 
 				// Get the public key for RS256
-				cert, err := utils.GetPemCert(config.Domain)
+				cert, err := utils.GetPemCert(domain)
 				if err != nil {
 					return nil, err
 				}

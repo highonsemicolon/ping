@@ -5,19 +5,18 @@ import (
 	"net/http"
 
 	"user-service/pkg/middleware"
-	"user-service/pkg/utils"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
-func SetupRoutes(router *gin.Engine, db *sql.DB, config utils.Auth0) {
+func SetupRoutes(router *gin.Engine, db *sql.DB, domain, audience string) {
 	router.Use(cors.New(cors.Config{AllowAllOrigins: true}))
 
 	router.GET("/", PublicEndpointHandler)
 
 	protected := router.Group("/")
-	protected.Use(middleware.JwtMiddleware(&config))
+	protected.Use(middleware.JwtMiddleware(domain, audience))
 	protected.GET("/protected-endpoint", ProtectedEndpointHandler)
 	protected.GET("/profile", ProfileHandler())
 }

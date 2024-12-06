@@ -12,19 +12,15 @@ type Config struct {
 		Port string `yaml:"port"`
 	} `yaml:"server"`
 
-	MySQL MySQLConfig `yaml:"mysql"`
+	Auth0 struct {
+		Domain   string `yaml:"domain"`
+		Audience string `yaml:"audience"`
+	} `yaml:"auth0"`
 
-	Auth0 Auth0 `yaml:"auth0"`
-}
-
-type Auth0 struct {
-	Domain   string `yaml:"domain"`
-	Audience string `yaml:"audience"`
-}
-
-type MySQLConfig struct {
-	DSN        string `yaml:"dsn"`
-	CACertPath string `yaml:"ca_cert_path"`
+	MySQL struct {
+		DSN        string `yaml:"dsn"`
+		CACertPath string `yaml:"ca_cert_path"`
+	} `yaml:"mysql"`
 }
 
 func LoadConfig(filepath string) (*Config, error) {

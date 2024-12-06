@@ -7,8 +7,6 @@ import (
 	"log"
 	"os"
 
-	"user-service/pkg/utils"
-
 	"github.com/go-sql-driver/mysql"
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -29,10 +27,10 @@ func setupTLSConfig(CACertPath string) {
 	mysql.RegisterTLSConfig("custom", tlsConfig)
 }
 
-func InitMySQL(config utils.MySQLConfig) (*sql.DB, error) {
-	setupTLSConfig(config.CACertPath)
+func InitMySQL(dsn, CACertPath string) (*sql.DB, error) {
+	setupTLSConfig(CACertPath)
 
-	db, err := sql.Open("mysql", config.DSN)
+	db, err := sql.Open("mysql", dsn)
 	if err != nil {
 		return nil, err
 	}
